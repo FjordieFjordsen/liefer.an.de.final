@@ -1,0 +1,192 @@
+.basket {
+    width: 30%;
+    height: 100vh;
+    box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    padding: 1em;
+}
+
+@media(max-width: 1250px) {
+    .basket {
+        display: none;
+    }
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    flex-grow: 1;
+    position: sticky;
+    height: max-content;
+    top: 0;
+}
+
+.shopping-cart {
+    text-align: center;
+}
+
+.shopping-cart h3{
+    font-size: 20px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.basketImageBox {
+    display: flex;
+    gap: 4px;
+}
+
+.basketImageBox img {
+    width: 24px;
+    padding: 4px;
+    display: flex;
+    cursor: pointer;
+}
+
+.basketItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    font-weight: 200px;
+    font-size: 22px;
+    width: 280px;
+    border: 1px solid #d37000;
+    border-radius: 40px;
+    margin-bottom: 4px;
+}
+
+.over {
+    display: flex;
+    margin-bottom: 8px;
+    height: 20px;
+}
+
+.under {
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 400px;
+    overflow: auto;
+    padding: 2px;
+}
+
+.bill {
+    padding: 16px;
+}
+
+.billMenu {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    gap: 14px;
+}
+
+.billMenuBolder {
+    font-weight: bolder;
+}
+
+.button {
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: green;
+    padding: 10px;
+    margin: 16px;
+    margin-top: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.closeButton {
+    background-color: orange;
+    padding: 6px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.basketSinglePrice {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 15%;
+}
+
+.counterButton img {
+    border: 1px solid grey;
+}
+.trashImg {
+    width: 20px;
+    height: auto;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.sum {
+    padding: 10px;
+}
+
+.basketSeperator {
+    width: 100%;
+    
+}
+
+.bill {
+    padding: 16px;
+}
+
+.billMenu {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.billMenuBolder {
+    font-weight: bolder;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: green;
+    padding: 12px;
+    margin: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: rgb(7, 175, 7);
+    color: white;
+}
+
+.closeButton {
+    background-color: rgb(221,147,10);
+    color: white;
+    padding: 3px 30px;
+    border-radius: 4px;
+}
+
+.closeButton:hover {
+    background-color: rgb(194, 161, 109);
+    cursor: pointer;
+}
