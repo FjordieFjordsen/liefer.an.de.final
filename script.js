@@ -99,10 +99,10 @@ function addToBasket(index) {
                 </div>
                 
             </div>`;
+    };
 
             syncMobileCart();
             updateMobileTotal();
-    };
 
 
     function renderBasket() {
@@ -199,11 +199,9 @@ function addToBasket(index) {
                 </div>
             </div>
         `;
-        renderMobileBasket();
     }
 
-
-    
+    renderMobileBasket();
 
 
     function updateTotal() {

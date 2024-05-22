@@ -2,8 +2,8 @@
     background-color: white;
     z-index: 999;
     position: fixed;
-    left: 30%;
-    right: 30%;
+    left: 0;
+    right: 0;
     bottom: 0;
     top: 0;
     transition: 250ms ease-in-out;
@@ -14,27 +14,6 @@
 @media(min-width: 1250px) {
     .dialog-bg {
         display: none;
-    }
-}
-
-@media(max-width: 800px) {
-    .dialog-bg {
-        left: 20%;
-        right: 20%;
-    }
-}
-
-@media(max-width: 580px) {
-    .dialog-bg {
-        left: 5%;
-        right: 5%;
-    }
-}
-
-@media(max-width: 390px) {
-    .dialog-bg {
-        left: 1%;
-        right: 1%;
     }
 }
 
