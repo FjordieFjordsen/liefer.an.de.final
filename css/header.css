@@ -72,6 +72,7 @@ img.shopping-bag {
 
     .header-content {
         padding: 2em 4em;
+        justify-content: center;
     }
 }
 

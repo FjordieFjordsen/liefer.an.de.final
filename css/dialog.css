@@ -9,6 +9,7 @@
     transition: 250ms ease-in-out;
     border: 1px solid rgb(255, 115, 0);
     border-radius: 10px;
+    overflow-y: hidden;
 }  
 
 @media(min-width: 1250px) {

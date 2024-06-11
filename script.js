@@ -6,28 +6,30 @@ let shoppingCart = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     loadCartFromLocalStorage();
-    renderBasket(); // für den normalen Warenkorb
-    renderMobileBasket(); // für den mobilen Warenkorb
+    renderBasket(); 
+    renderMobileBasket(); 
 });
 
 
 
 function openDialog() {
     document.getElementById('dialog').classList.remove('d-none');
+    document.body.style.overflowY = 'hidden';
 }
 
 
 function closeDialog() {
     document.getElementById('dialog').classList.add('d-none');
+    document.body.style.overflowY = 'auto';
 }
 
 
 function syncMobileCart() {
     const mobileCartList = document.querySelector('.right-content-mobile .list');
     if (mobileCartList) {
-        mobileCartList.innerHTML = ''; // Leere den mobilen Warenkorb, bevor neuen Inhalt hinzugefügt wird
+        mobileCartList.innerHTML = ''; 
         shoppingCart.forEach(item => {
-            mobileCartList.innerHTML += generateBasketHTML(item); // Füge die Elemente zum mobilen Warenkorb hinzu
+            mobileCartList.innerHTML += generateBasketHTML(item); 
         });
     }
 }
@@ -41,10 +43,10 @@ function updateMobileTotal() {
     let shippingCost = 2.00; // Lieferkosten
     let total = subtotal + shippingCost;
 
-    // Aktualisiere die Zwischensumme und die Gesamtsumme im HTML für den mobilen Warenkorb
     document.getElementById('mobileSubtotal').textContent = subtotal.toFixed(2).replace('.', ',') + " €";
     document.getElementById('mobileTotal').textContent = total.toFixed(2).replace('.', ',') + " €";
 }
+
 
 
 function addToBasket(index) {
@@ -52,14 +54,12 @@ function addToBasket(index) {
         const selectedItem = {
             name: basket[index],
             price: priceList[index],
-            quantity: 1 // Wir fügen immer eine Einheit hinzu, wenn der Plus-Button gedrückt wird
+            quantity: 1 
         };
         const existingItem = shoppingCart.find(item => item.name === selectedItem.name);
         if (existingItem) {
-            // Das Gericht ist bereits im Warenkorb vorhanden, aktualisiere die Menge
-            existingItem.quantity += 1; // Erhöhe die Menge um eins
+            existingItem.quantity += 1; 
         } else {
-            // Das Gericht ist noch nicht im Warenkorb, füge es hinzu
             shoppingCart.push(selectedItem);
         }
 
@@ -67,12 +67,13 @@ function addToBasket(index) {
         updateTotal();
         saveCartToLocalStorage();
         syncMobileCart();
+        renderMobileBasket();
         updateMobileTotal();
     }
 };
 
 
-    function generateBasketHTML(item, index) {
+function generateBasketHTML(item, index) {
         return `
             <div class="basketItem">
                 <div class="over">
@@ -99,13 +100,13 @@ function addToBasket(index) {
                 </div>
                 
             </div>`;
-    };
+};
 
             syncMobileCart();
             updateMobileTotal();
 
 
-    function renderBasket() {
+function renderBasket() {
         let container = document.getElementById('list');
         if (shoppingCart.length === 0) {
             container.innerHTML = `
@@ -113,57 +114,56 @@ function addToBasket(index) {
             <p class='empty-cart-message'>Der Warenkorb ist leer.<br> Bitte füge ein leckeres Gericht hinzu, welches wir Dir bringen sollen.</p>            
             `;
         } else {
-            container.innerHTML = ''; // Leere den Container, bevor neuen Inhalt hinzugefügt wird
+            container.innerHTML = ''; 
             shoppingCart.forEach((item, index) => {
                 container.innerHTML += generateBasketHTML(item, index);
             });
         }
-    }
+}
 
 
-    function deleteFromBasket(item) {
-        let index = shoppingCart.findIndex(product => product.name === item); // Suchen Sie den Index des Elements im shoppingCart-Array
+function deleteFromBasket(item) {
+        let index = shoppingCart.findIndex(product => product.name === item); 
         if (index !== -1) {
-            shoppingCart.splice(index, 1); // Löschen Sie das Element aus dem shoppingCart-Array
+            shoppingCart.splice(index, 1); 
             renderBasket();
             updateTotal();
             saveCartToLocalStorage();
-            syncMobileCart(); // Aktualisieren Sie den Warenkorb
+            syncMobileCart(); 
         }
-    };
+};
 
 
-    function totalDeleteFromBasket(item) {
-        let index = shoppingCart.findIndex(product => product.name === item); // Suchen Sie den Index des Elements im shoppingCart-Array
+function totalDeleteFromBasket(item) {
+        let index = shoppingCart.findIndex(product => product.name === item); 
         if (index !== -1) {
-            shoppingCart.splice(index, 1); // Löschen Sie das Element aus dem shoppingCart-Array
+            shoppingCart.splice(index, 1); 
             renderBasket();
             updateTotal();
-            saveCartToLocalStorage(); // Aktualisieren Sie den Warenkorb
+            saveCartToLocalStorage(); 
             syncMobileCart();
         }
-    };
+};
 
 
-    function decreaseQuantity(index) {
-        console.log('Index:', index);
+function decreaseQuantity(index) {
         if (index >= 0 && index < shoppingCart.length) {
             if (shoppingCart[index].quantity > 1) {
-                shoppingCart[index].quantity--; // Reduzieren Sie die Menge des Elements im Warenkorb
+                shoppingCart[index].quantity--; 
             } else {
-                shoppingCart.splice(index, 1); // Entfernen Sie das Element aus dem Warenkorb, wenn die Menge 0 erreicht
+                shoppingCart.splice(index, 1); 
             }
-            renderBasket(); // Aktualisieren Sie den normalen Warenkorb
-            updateTotal(); // Aktualisieren Sie die Gesamtsumme für den normalen Warenkorb
-            saveCartToLocalStorage(); // Speichern Sie den aktualisierten Warenkorb im lokalen Speicher
-            syncMobileCart(); // Synchronisieren Sie den mobilen Warenkorb
-            renderMobileBasket(); // Aktualisieren Sie den mobilen Warenkorb
-            updateMobileTotal(); // Aktualisieren Sie die Gesamtsumme für den mobilen Warenkorb
+            renderBasket(); 
+            updateTotal(); 
+            saveCartToLocalStorage(); 
+            syncMobileCart(); 
+            renderMobileBasket(); 
+            updateMobileTotal(); 
         }
-    }
+}
     
 
-    function renderMobileBasket() {
+function renderMobileBasket() {
         console.log('renderMobileBasket aufgerufen');
         console.log('shoppingCart:', shoppingCart);
         let container = document.getElementById('mobileList');
@@ -177,15 +177,15 @@ function addToBasket(index) {
             `;
         } else {
             console.log('Warenkorb hat Artikel');
-            container.innerHTML = ''; // Leere den Container, bevor neuen Inhalt hinzugefügt wird
+            container.innerHTML = ''; 
             shoppingCart.forEach((item, index) => {
                 container.innerHTML += generateBasketHTML(item, index);
             });
         }
-    }
+}
     
     
-    function generateMobileBasketHTML(item, index) {
+function generateMobileBasketHTML(item, index) {
         return `
             <div class="mobile-basket-item">
                 <div class="item-info">
@@ -199,12 +199,12 @@ function addToBasket(index) {
                 </div>
             </div>
         `;
-    }
+}
 
     renderMobileBasket();
 
 
-    function updateTotal() {
+function updateTotal() {
         let subtotal = 0;
         
         // Berechne die Zwischensumme
@@ -218,13 +218,16 @@ function addToBasket(index) {
         let total = subtotal + shippingCost;
         // Aktualisiere die Gesamtsumme im HTML
         document.getElementById('total').textContent = total.toFixed(2).replace('.', ',') + " €";
+
+        let endsumme = subtotal;
+        document.getElementById('updateCardTotal').innerHTML = "Total: € " + endsumme.toFixed(2).replace('.', ',');
         syncMobileCart();
         updateMobileTotal();
         renderMobileBasket();
-    };
+};
 
 
-    function done() {
+function done() {
         if (shoppingCart.length === 0) {
             alert("Der Warenkorb ist leer. Bitte fügen Sie Artikel hinzu, bevor Sie eine Bestellung aufgeben.");
             return;
@@ -243,34 +246,40 @@ function addToBasket(index) {
         setTimeout(function() {
             document.getElementById('send').innerHTML = "Bestellung abschicken";
         }, 2000);
-    };
+};
     
     
     
-    // Funktion zum Speichern des Warenkorbs im lokalen Speicher
-    function saveCartToLocalStorage() {
+function saveCartToLocalStorage() {
         localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
 
         syncMobileCart();
         renderMobileBasket();
-    };
+};
 
 
-    // Funktion zum Laden des Warenkorbs aus dem lokalen Speicher
-    function loadCartFromLocalStorage() {
+function loadCartFromLocalStorage() {
         const savedCart = localStorage.getItem('shoppingCart');
         if (savedCart) {
             shoppingCart = JSON.parse(savedCart);
-            renderBasket(); // Aktualisieren Sie den Warenkorb, um die geladenen Elemente anzuzeigen
-            updateTotal(); // Aktualisieren Sie die Gesamtsumme basierend auf den geladenen Elementen
+            renderBasket();
+            updateTotal(); 
             renderMobileBasket();
         }
         syncMobileCart();
         updateMobileTotal();
-    };
+};
 
 
-    // Rufen Sie die loadCartFromLocalStorage-Funktion auf, um den Warenkorb beim Laden der Seite zu laden
     loadCartFromLocalStorage();
     syncMobileCart();
     updateMobileTotal();
+
+
+
+      
+
+
+
+
+
